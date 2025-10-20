@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 interface HeaderLink {
   label: string;
@@ -10,11 +11,15 @@ interface HeaderLink {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgFor, RouterLink, RouterLinkActive],
+  imports: [NgFor, RouterLink, RouterLinkActive, FormsModule],
   templateUrl: './index.html',
   styleUrl: './styles.scss'
 })
 export class HeaderComponent {
+  searchQuery = '';
+
+  constructor(private readonly router: Router) {}
+
   readonly mainLinks: HeaderLink[] = [
     { label: 'Início', path: '' },
     { label: 'Ofertas do Dia', path: '/produtos' },
@@ -25,7 +30,17 @@ export class HeaderComponent {
     { label: 'Contato', path: '/contato' }
   ];
 
-  preventDefault(event: Event): void {
+  onSearch(event: Event): void {
     event.preventDefault();
+    const query = this.searchQuery.trim();
+
+    if (!query) {
+      this.router.navigate(['/produtos']);
+      return;
+    }
+
+    this.router.navigate(['/produtos'], {
+      queryParams: { busca: query }
+    });
   }
 }

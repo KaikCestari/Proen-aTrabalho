@@ -8,7 +8,10 @@
   </header>
   <div class="products__layout">
     <div class="products__catalog">
-      <article *ngFor="let category of categories; trackBy: trackByCategory">
+      <p class="products__empty" *ngIf="filteredCategories.length === 0 && currentQuery">
+        Nenhum produto encontrado para "{{ currentQuery }}".
+      </p>
+      <article *ngFor="let category of filteredCategories; trackBy: trackByCategory">
         <header>
           <h2>{{ category.name }}</h2>
           <p>{{ category.description }}</p>

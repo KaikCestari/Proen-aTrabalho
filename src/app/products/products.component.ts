@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 interface ProductItem {
   name: string;
@@ -80,6 +82,17 @@ export class ProductsComponent {
   ];
 
   cartItems: CartEntry[] = [];
+  filteredCategories: ProductCategory[] = this.categories;
+  currentQuery = '';
+  private readonly destroyRef = inject(DestroyRef);
+
+  constructor(private readonly route: ActivatedRoute) {
+    this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
+      const term = (params.get('busca') ?? '').trim();
+      this.currentQuery = term;
+      this.filteredCategories = this.applySearch(term);
+    });
+  }
 
   addToCart(product: ProductItem): void {
     const entry = this.cartItems.find((item) => item.product.name === product.name);
@@ -136,5 +149,39 @@ export class ProductsComponent {
 
   trackByCartItem(index: number, item: CartEntry): string {
     return item.product.name;
+  }
+
+  private applySearch(term: string): ProductCategory[] {
+    const normalized = term.trim().toLowerCase();
+
+    if (!normalized) {
+      return this.categories;
+    }
+
+    return this.categories
+      .map((category) => {
+        const matchesCategory =
+          category.name.toLowerCase().includes(normalized) ||
+          category.description.toLowerCase().includes(normalized);
+
+        const matchedItems = category.items.filter((item) => {
+          const haystack = `${item.name} ${item.description}`.toLowerCase();
+          return haystack.includes(normalized);
+        });
+
+        if (matchesCategory) {
+          return category;
+        }
+
+        if (matchedItems.length > 0) {
+          return {
+            ...category,
+            items: matchedItems
+          };
+        }
+
+        return null;
+      })
+      .filter((category): category is ProductCategory => category !== null);
   }
 }

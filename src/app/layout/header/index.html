@@ -5,15 +5,19 @@
   </div>
   <div class="header__main">
     <a class="header__brand" routerLink="">
-      <img src="assets/logo-proenca.svg" alt="Logo Proença" />
-      <div>
-        <strong>Proença</strong>
-        <small>Supermercados</small>
-      </div>
+      <img src="assets/logo.png" alt="Logo Proença" />
+  
     </a>
-    <form class="header__search" role="search" (submit)="preventDefault($event)">
+    <form class="header__search" role="search" (submit)="onSearch($event)">
       <label class="sr-only" for="header-search">Buscar produtos</label>
-      <input id="header-search" type="search" placeholder="O que você procura hoje?" />
+      <input
+        id="header-search"
+        name="headerSearch"
+        type="search"
+        placeholder="O que você procura hoje?"
+        [(ngModel)]="searchQuery"
+        autocomplete="off"
+      />
       <button type="submit">Buscar</button>
     </form>
     <nav class="header__shortcuts" aria-label="Acesso rápido">
