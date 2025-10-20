@@ -12,12 +12,15 @@ interface ProductCategory {
   standalone: true,
   imports: [NgFor],
   template: `
-    <section>
-      <h1>Nossos Produtos</h1>
-      <p>
-        Do hortifrúti ao açougue, selecionamos cuidadosamente os produtos para garantir frescor e qualidade.
-      </p>
-      <div class="grid">
+    <section class="products">
+      <header class="products__header">
+        <h1>Nossos Produtos</h1>
+        <p>
+          Do hortifrúti ao açougue, selecionamos cuidadosamente os produtos para garantir frescor e
+          qualidade.
+        </p>
+      </header>
+      <div class="products__grid">
         <article *ngFor="let category of categories">
           <h2>{{ category.name }}</h2>
           <p>{{ category.description }}</p>
@@ -30,21 +33,48 @@ interface ProductCategory {
   `,
   styles: [
     `
-      .grid {
+      :host {
+        display: block;
+      }
+
+      .products {
+        background: #fff;
+        border-radius: 1.5rem;
+        padding: clamp(2rem, 4vw, 3rem);
+        box-shadow: 0 1.5rem 3rem rgba(7, 47, 107, 0.08);
         display: grid;
         gap: 2rem;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .products__header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 3vw, 2.5rem);
+      }
+
+      .products__grid {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       }
 
       article {
-        background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%);
-        padding: 1.5rem;
-        border-radius: 1rem;
-        box-shadow: 0 1rem 2rem rgba(15, 118, 110, 0.1);
+        background: linear-gradient(180deg, rgba(0, 113, 206, 0.08) 0%, rgba(0, 113, 206, 0) 100%);
+        padding: 1.75rem;
+        border-radius: 1.25rem;
+        border: 1px solid rgba(7, 47, 107, 0.1);
+        display: grid;
+        gap: 0.75rem;
       }
 
       h2 {
-        color: #0f766e;
+        color: #1c3c78;
+        margin: 0;
+      }
+
+      ul {
+        padding-left: 1.25rem;
+        margin: 0;
+        color: #475569;
       }
     `
   ]

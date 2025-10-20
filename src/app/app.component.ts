@@ -1,42 +1,42 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   template: `
-    <header>
-      <div class="logo">
-        <strong>Supermercado Proença</strong>
-      </div>
-      <nav>
-        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Início</a>
-        <a routerLink="produtos" routerLinkActive="active">Produtos</a>
-        <a routerLink="contato" routerLinkActive="active">Contato</a>
-      </nav>
-    </header>
-    <main>
-      <router-outlet />
-    </main>
-    <footer>
-      © {{ currentYear }} Supermercado Proença. Todos os direitos reservados.
-    </footer>
+    <div class="app">
+      <app-header />
+      <main>
+        <router-outlet />
+      </main>
+      <app-footer />
+    </div>
   `,
   styles: [
     `
       :host {
         display: block;
         min-height: 100vh;
-        background: linear-gradient(180deg, #d1fae5 0%, rgba(209, 250, 229, 0) 35%);
+        background: #f5f7fb;
       }
-      header .logo {
-        font-size: 1.25rem;
-        letter-spacing: 0.04em;
+
+      .app {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      main {
+        padding: clamp(1.5rem, 4vw, 3rem);
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
       }
     `
   ]
 })
-export class AppComponent {
-  readonly currentYear = new Date().getFullYear();
-}
+export class AppComponent {}
