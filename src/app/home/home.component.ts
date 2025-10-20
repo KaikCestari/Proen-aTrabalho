@@ -1,34 +1,30 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { HomeHeroComponent } from './components/hero/home-hero.component';
+import { HomeDepartmentsComponent } from './components/departments/home-departments.component';
+import { HomeHighlightsComponent } from './components/highlights/home-highlights.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink],
+  imports: [HomeHeroComponent, HomeDepartmentsComponent, HomeHighlightsComponent],
   template: `
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Bem-vindo ao Supermercado Proença</h1>
-        <p>
-          A melhor experiência de compras para toda a família. Oferecemos produtos frescos,
-          ofertas especiais e atendimento acolhedor.
-        </p>
-        <div class="hero-actions">
-          <a routerLink="/produtos" class="cta">Explorar Produtos</a>
-          <a routerLink="/contato" class="secondary">Fale Conosco</a>
-        </div>
-      </div>
-      <img src="assets/mercado-proenca.svg" alt="Corredor iluminado do supermercado Proença" />
-    </section>
+    <div class="home">
+      <app-home-hero />
+      <app-home-departments />
+      <app-home-highlights />
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        display: block;
+      }
 
-    <section>
-      <h2>Diferenciais Proença</h2>
-      <ul>
-        <li>Seleção rigorosa de hortifrúti com produtores locais.</li>
-        <li>Programa de fidelidade com descontos exclusivos todas as semanas.</li>
-        <li>Entrega rápida em toda a região de Proença.</li>
-      </ul>
-    </section>
-  `
+      .home {
+        display: grid;
+        gap: 3rem;
+      }
+    `
+  ]
 })
 export class HomeComponent {}
