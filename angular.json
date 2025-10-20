@@ -58,5 +58,8 @@
       }
     }
   },
-  "defaultProject": "proenca-supermercado"
+  "defaultProject": "proenca-supermercado",
+  "cli": {
+    "analytics": "544ae85b-023d-4abd-a4fb-29071d741c0c"
+  }
 }
