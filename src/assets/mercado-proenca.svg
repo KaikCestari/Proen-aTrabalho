@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="gradient" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="shelves" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f0fdfa" />
+      <stop offset="100%" stop-color="#ccfbf1" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="#ecfdf5" />
+  <rect x="40" y="70" width="520" height="260" rx="24" fill="url(#shelves)" />
+  <rect x="70" y="100" width="460" height="18" rx="9" fill="#0f766e" opacity="0.4" />
+  <rect x="70" y="160" width="460" height="18" rx="9" fill="#0f766e" opacity="0.3" />
+  <rect x="70" y="220" width="460" height="18" rx="9" fill="#0f766e" opacity="0.2" />
+  <rect x="70" y="280" width="460" height="18" rx="9" fill="#0f766e" opacity="0.25" />
+  <g transform="translate(120 120)">
+    <rect width="80" height="110" rx="16" fill="#ffffff" stroke="#0d9488" stroke-width="4" />
+    <circle cx="40" cy="40" r="18" fill="url(#gradient)" opacity="0.9" />
+    <rect x="16" y="72" width="48" height="10" rx="5" fill="#0d9488" opacity="0.7" />
+  </g>
+  <g transform="translate(240 120)">
+    <rect width="80" height="110" rx="16" fill="#ffffff" stroke="#0d9488" stroke-width="4" />
+    <circle cx="40" cy="40" r="18" fill="#f97316" opacity="0.85" />
+    <rect x="16" y="72" width="48" height="10" rx="5" fill="#f97316" opacity="0.75" />
+  </g>
+  <g transform="translate(360 120)">
+    <rect width="80" height="110" rx="16" fill="#ffffff" stroke="#0d9488" stroke-width="4" />
+    <circle cx="40" cy="40" r="18" fill="#2563eb" opacity="0.85" />
+    <rect x="16" y="72" width="48" height="10" rx="5" fill="#2563eb" opacity="0.75" />
+  </g>
+  <g transform="translate(100 40)">
+    <path d="M0 30 C30 -10, 120 -10, 150 30" fill="none" stroke="url(#gradient)" stroke-width="14" stroke-linecap="round" />
+    <text x="75" y="60" text-anchor="middle" font-size="32" fill="#0f172a" font-weight="700">Proença</text>
+    <text x="75" y="92" text-anchor="middle" font-size="18" fill="#0f766e">Supermercados</text>
+  </g>
+</svg>
