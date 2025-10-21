@@ -60,14 +60,6 @@
   },
   "defaultProject": "proenca-supermercado",
   "cli": {
-<<<<<<< HEAD
     "analytics": false
-=======
-<<<<<<< HEAD
-    "analytics": false
-=======
-    "analytics": "544ae85b-023d-4abd-a4fb-29071d741c0c"
->>>>>>> testes
->>>>>>> f6cb3769a184a9a1bc8dcbcfd047dd264bdb40ec
   }
 }
