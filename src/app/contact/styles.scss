@@ -1,0 +1,81 @@
+:host {
+  display: block;
+}
+
+.contact {
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: clamp(2rem, 4vw, 3rem);
+  box-shadow: 0 1.5rem 3rem rgba(7, 47, 107, 0.08);
+  display: grid;
+  gap: 2rem;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+input,
+textarea {
+  padding: 0.85rem 1rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(7, 47, 107, 0.2);
+  font: inherit;
+}
+
+button {
+  background: #0071ce;
+  color: #fff;
+  padding: 0.85rem 1.75rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+button:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  filter: brightness(1.05);
+}
+
+aside {
+  background: linear-gradient(180deg, rgba(0, 113, 206, 0.08) 0%, rgba(0, 113, 206, 0) 100%);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.contact__banner {
+  margin-top: 1rem;
+  background: #001f3f;
+  color: #fff;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+@media (max-width: 960px) {
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+}

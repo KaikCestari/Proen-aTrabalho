@@ -1,0 +1,35 @@
+<section class="contact">
+  <header class="contact__header">
+    <h1>Fale com a Proença</h1>
+    <p>
+      Estamos prontos para ajudar. Envie uma mensagem e nossa equipe retornará o contato rapidamente.
+    </p>
+  </header>
+  <div class="contact__grid">
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="field">
+        <label for="name">Nome</label>
+        <input id="name" type="text" formControlName="name" placeholder="Seu nome" />
+      </div>
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" formControlName="email" placeholder="voce@exemplo.com" />
+      </div>
+      <div class="field">
+        <label for="message">Mensagem</label>
+        <textarea id="message" rows="5" formControlName="message" placeholder="Como podemos ajudar?"></textarea>
+      </div>
+      <button type="submit" [disabled]="form.invalid">Enviar mensagem</button>
+    </form>
+    <aside>
+      <h2>Visite uma unidade</h2>
+      <p>Avenida Navarro de Andrade, 1918 · Centro · Andradina/SP</p>
+      <p>Telefone: (18) 99750-8457</p>
+      <p>Horário de atendimento: 07h às 22h</p>
+      <div class="contact__banner">
+        <strong>Whatsapp Proença</strong>
+        <span>Atendimento imediato no número (18) 99750-8457</span>
+      </div>
+    </aside>
+  </div>
+</section>

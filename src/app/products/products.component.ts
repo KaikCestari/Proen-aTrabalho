@@ -1,100 +1,140 @@
 import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
+
+interface ProductItem {
+  name: string;
+  description: string;
+  price: number;
+}
 
 interface ProductCategory {
   name: string;
   description: string;
-  items: string[];
+  items: ProductItem[];
+}
+
+interface CartEntry {
+  product: ProductItem;
+  quantity: number;
 }
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [NgFor],
-  template: `
-    <section class="products">
-      <header class="products__header">
-        <h1>Nossos Produtos</h1>
-        <p>
-          Do hortifrúti ao açougue, selecionamos cuidadosamente os produtos para garantir frescor e
-          qualidade.
-        </p>
-      </header>
-      <div class="products__grid">
-        <article *ngFor="let category of categories">
-          <h2>{{ category.name }}</h2>
-          <p>{{ category.description }}</p>
-          <ul>
-            <li *ngFor="let item of category.items">{{ item }}</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-  `,
-  styles: [
-    `
-      :host {
-        display: block;
-      }
-
-      .products {
-        background: #fff;
-        border-radius: 1.5rem;
-        padding: clamp(2rem, 4vw, 3rem);
-        box-shadow: 0 1.5rem 3rem rgba(7, 47, 107, 0.08);
-        display: grid;
-        gap: 2rem;
-      }
-
-      .products__header h1 {
-        margin: 0;
-        font-size: clamp(2rem, 3vw, 2.5rem);
-      }
-
-      .products__grid {
-        display: grid;
-        gap: 2rem;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      }
-
-      article {
-        background: linear-gradient(180deg, rgba(0, 113, 206, 0.08) 0%, rgba(0, 113, 206, 0) 100%);
-        padding: 1.75rem;
-        border-radius: 1.25rem;
-        border: 1px solid rgba(7, 47, 107, 0.1);
-        display: grid;
-        gap: 0.75rem;
-      }
-
-      h2 {
-        color: #1c3c78;
-        margin: 0;
-      }
-
-      ul {
-        padding-left: 1.25rem;
-        margin: 0;
-        color: #475569;
-      }
-    `
-  ]
+  imports: [NgFor, NgIf, CurrencyPipe],
+  templateUrl: './index.html',
+  styleUrl: './styles.scss'
 })
 export class ProductsComponent {
   readonly categories: ProductCategory[] = [
     {
       name: 'Hortifrúti',
       description: 'Frutas, verduras e legumes selecionados diariamente de produtores parceiros.',
-      items: ['Manga Palmer', 'Tomate Italiano', 'Alface Crespa', 'Batata Doce']
+      items: [
+        { name: 'Manga Palmer', description: 'Doce e suculenta, ideal para sucos e sobremesas.', price: 6.49 },
+        { name: 'Tomate Italiano', description: 'Perfeito para molhos encorpados e saladas frescas.', price: 5.29 },
+        { name: 'Alface Crespa', description: 'Folhas crocantes colhidas ao amanhecer.', price: 3.99 },
+        { name: 'Batata Doce Roxa', description: 'Fonte de energia para receitas saudáveis.', price: 4.89 }
+      ]
+    },
+    {
+      name: 'Mercearia',
+      description: 'Itens essenciais para abastecer a despensa da família com economia.',
+      items: [
+        { name: 'Arroz Agulhinha 5kg', description: 'Grãos soltinhos e selecionados Proença.', price: 22.9 },
+        { name: 'Feijão Carioca 1kg', description: 'Caldo cremoso e sabor caseiro garantido.', price: 8.59 },
+        { name: 'Azeite Extra Virgem 500ml', description: 'Blend português com acidez controlada.', price: 27.5 },
+        { name: 'Café Torrado e Moído 500g', description: 'Torra média com notas de chocolate.', price: 15.99 }
+      ]
     },
     {
       name: 'Padaria',
       description: 'Pães artesanais e confeitaria fresca com receitas exclusivas Proença.',
-      items: ['Pão de Fermentação Natural', 'Croissant de Amêndoas', 'Bolo de Cenoura com Ganache']
+      items: [
+        { name: 'Pão de Fermentação Natural', description: 'Casca crocante e miolo leve.', price: 12.5 },
+        { name: 'Croissant de Amêndoas', description: 'Folhado amanteigado com recheio cremoso.', price: 8.75 },
+        { name: 'Bolo de Cenoura com Ganache', description: 'Clássico fofinho com cobertura intensa.', price: 24.9 },
+        { name: 'Baguete Integral', description: 'Feita com grãos selecionados e mel.', price: 7.4 }
+      ]
     },
     {
       name: 'Açougue',
       description: 'Carnes nobres com cortes especiais prontos para o seu churrasco.',
-      items: ['Picanha Angus', 'Fraldinha Maturada', 'Linguiça Artesanal de Ervas']
+      items: [
+        { name: 'Picanha Angus', description: 'Maturada e marmorizada na medida certa.', price: 79.9 },
+        { name: 'Fraldinha Maturada', description: 'Maciez e suculência para o final de semana.', price: 49.9 },
+        { name: 'Linguiça Artesanal de Ervas', description: 'Produção própria com especiarias frescas.', price: 32.5 },
+        { name: 'Filé de Frango Orgânico', description: 'Criado sem antibióticos e com bem-estar garantido.', price: 29.9 }
+      ]
+    },
+    {
+      name: 'Bebidas & Laticínios',
+      description: 'Refrigerados, sucos, cervejas especiais e laticínios selecionados.',
+      items: [
+        { name: 'Suco Natural de Laranja 1L', description: 'Prensado a frio, sem adição de açúcar.', price: 12.9 },
+        { name: 'Cerveja Artesanal IPA', description: 'Rótulo exclusivo com lúpulos aromáticos.', price: 16.5 },
+        { name: 'Iogurte Grego Tradicional', description: 'Textura cremosa com alto teor de proteína.', price: 5.99 },
+        { name: 'Leite Integral 1L', description: 'Parceria com fazendas certificadas.', price: 4.39 }
+      ]
     }
   ];
+
+  cartItems: CartEntry[] = [];
+
+  addToCart(product: ProductItem): void {
+    const entry = this.cartItems.find((item) => item.product.name === product.name);
+
+    if (entry) {
+      entry.quantity += 1;
+      this.cartItems = [...this.cartItems];
+    } else {
+      this.cartItems = [...this.cartItems, { product, quantity: 1 }];
+    }
+  }
+
+  increaseQuantity(product: ProductItem): void {
+    const entry = this.cartItems.find((item) => item.product.name === product.name);
+    if (entry) {
+      entry.quantity += 1;
+      this.cartItems = [...this.cartItems];
+    }
+  }
+
+  decreaseQuantity(product: ProductItem): void {
+    const entry = this.cartItems.find((item) => item.product.name === product.name);
+    if (!entry) {
+      return;
+    }
+
+    if (entry.quantity === 1) {
+      this.removeFromCart(product);
+    } else {
+      entry.quantity -= 1;
+      this.cartItems = [...this.cartItems];
+    }
+  }
+
+  removeFromCart(product: ProductItem): void {
+    this.cartItems = this.cartItems.filter((item) => item.product.name !== product.name);
+  }
+
+  totalQuantity(): number {
+    return this.cartItems.reduce((total, item) => total + item.quantity, 0);
+  }
+
+  cartTotal(): number {
+    return this.cartItems.reduce((total, item) => total + item.product.price * item.quantity, 0);
+  }
+
+  trackByCategory(index: number, category: ProductCategory): string {
+    return category.name;
+  }
+
+  trackByItem(index: number, item: ProductItem): string {
+    return item.name;
+  }
+
+  trackByCartItem(index: number, item: CartEntry): string {
+    return item.product.name;
+  }
 }
