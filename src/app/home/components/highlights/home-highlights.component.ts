@@ -13,8 +13,8 @@ interface ProductOffer {
   selector: 'app-home-highlights',
   standalone: true,
   imports: [NgFor, RouterLink],
-  templateUrl: './index.html',
-  styleUrl: './styles.scss'
+  templateUrl: './home-highlights.html',
+  styleUrl: './home-highlights.scss'
 })
 export class HomeHighlightsComponent {
   readonly offers: ProductOffer[] = [

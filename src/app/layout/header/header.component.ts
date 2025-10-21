@@ -24,8 +24,8 @@ interface HeaderAction {
   selector: 'app-header',
   standalone: true,
   imports: [NgFor, NgSwitch, NgSwitchCase, RouterLink, RouterLinkActive],
-  templateUrl: './index.html',
-  styleUrl: './styles.scss'
+  templateUrl: './header.html',
+  styleUrl: './header.scss'
 })
 export class HeaderComponent {
   private readonly router = inject(Router);

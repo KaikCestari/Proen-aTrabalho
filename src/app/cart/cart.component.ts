@@ -9,8 +9,8 @@ import { CartEntry, ProductItem } from './cart.types';
   selector: 'app-cart',
   standalone: true,
   imports: [NgIf, NgFor, CurrencyPipe, RouterLink],
-  templateUrl: './index.html',
-  styleUrl: './styles.scss'
+  templateUrl: './cart.html',
+  styleUrl: './cart.scss'
 })
 export class CartComponent {
   cartItems: CartEntry[] = [];
@@ -129,4 +129,3 @@ export class CartComponent {
     this.pixCopied = false;
   }
 }
-

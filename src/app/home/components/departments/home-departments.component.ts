@@ -12,8 +12,8 @@ interface Department {
   selector: 'app-home-departments',
   standalone: true,
   imports: [NgFor],
-  templateUrl: './index.html',
-  styleUrl: './styles.scss'
+  templateUrl: './home-departments.html',
+  styleUrl: './home-departments.scss'
 })
 export class HomeDepartmentsComponent {
   readonly departments: Department[] = [

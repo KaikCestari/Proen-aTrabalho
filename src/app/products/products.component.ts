@@ -15,8 +15,8 @@ interface ProductCategory {
   selector: 'app-products',
   standalone: true,
   imports: [NgFor, NgIf, CurrencyPipe],
-  templateUrl: './index.html',
-  styleUrl: './styles.scss'
+  templateUrl: './products.html',
+  styleUrl: './products.scss'
 })
 export class ProductsComponent {
   private readonly cartService = inject(CartService);

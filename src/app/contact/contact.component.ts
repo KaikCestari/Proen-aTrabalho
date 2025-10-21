@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   selector: 'app-contact',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './index.html',
-  styleUrl: './styles.scss'
+  templateUrl: './contact.html',
+  styleUrl: './contact.scss'
 })
 export class ContactComponent {
   readonly form: FormGroup;

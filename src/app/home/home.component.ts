@@ -7,7 +7,7 @@ import { HomeHighlightsComponent } from './components/highlights/home-highlights
   selector: 'app-home',
   standalone: true,
   imports: [HomeHeroComponent, HomeDepartmentsComponent, HomeHighlightsComponent],
-  templateUrl: './index.html',
-  styleUrl: './styles.scss'
+  templateUrl: './home.html',
+  styleUrl: './home.scss'
 })
 export class HomeComponent {}
