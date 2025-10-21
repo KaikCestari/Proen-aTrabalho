@@ -1,17 +1,23 @@
-<section class="hero">
-  <div class="hero__copy">
-    <p class="hero__tag">Inspiração Carrefour</p>
-    <h1>Seu supermercado completo com ofertas todos os dias</h1>
-    <p>
-      Faça suas compras com a experiência digital do Proença. Retire na loja, receba em casa ou agende
-      pelo aplicativo.
-    </p>
-    <div class="hero__actions">
-      <a routerLink="/produtos" class="hero__cta">Ver ofertas exclusivas</a>
-      <a routerLink="/contato" class="hero__link">Encontre a loja mais próxima</a>
+<section class="hero" aria-label="Ofertas relâmpago Proença">
+  <button type="button" class="hero__nav hero__nav--prev" aria-label="Oferta anterior">
+    <span aria-hidden="true">‹</span>
+  </button>
+  <div class="hero__banner">
+    <div class="hero__image" aria-hidden="true"></div>
+    <div class="hero__content">
+      <span class="hero__badge">Supermercado Proença</span>
+      <h1>Ofertas Relâmpago <strong>Todos os Dias</strong></h1>
+      <p>
+        Aproveite descontos exclusivos inspirados na experiência Carrefour com entrega rápida, retirada
+        fácil e condições especiais no Clube Proença.
+      </p>
+      <div class="hero__actions">
+        <a routerLink="/produtos" class="hero__cta">Aproveitar agora</a>
+        <a routerLink="/contato" class="hero__link">Conheça nossas lojas</a>
+      </div>
     </div>
   </div>
-  <figure class="hero__visual" aria-hidden="true">
-    <img src="assets/home-hero.svg" alt="" />
-  </figure>
+  <button type="button" class="hero__nav hero__nav--next" aria-label="Próxima oferta">
+    <span aria-hidden="true">›</span>
+  </button>
 </section>

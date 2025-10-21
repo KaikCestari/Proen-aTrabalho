@@ -1,7 +1,7 @@
 :root {
   color-scheme: light;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f7fb;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
 }
 
 * {
@@ -10,12 +10,13 @@
 
 body {
   margin: 0;
-  background: #f5f7fb;
-  color: #1f2937;
+  background: #ffffff;
+  color: #4e4e4e;
+  font-family: inherit;
 }
 
 a {
-  color: inherit;
+  color: #0038a8;
 }
 
 main {
@@ -25,10 +26,11 @@ main {
 h1,
 h2,
 h3 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #0f172a;
+  font-family: inherit;
+  color: #0038a8;
+  margin-top: 0;
 }
 
 p {
-  color: #475569;
+  color: #4e4e4e;
 }
