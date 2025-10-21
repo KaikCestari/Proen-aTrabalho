@@ -1,27 +1,17 @@
 <header class="header">
   <div class="header__main">
     <a class="header__brand" routerLink="">
-<<<<<<< HEAD
       <img src="assets/logo.png" alt="Logo Proença" />
-  
     </a>
     <form class="header__search" role="search" (submit)="onSearch($event)">
-      <label class="sr-only" for="header-search">Buscar produtos</label>
+      <label class="sr-only" for="header-search">Pesquise por produtos ou marcas</label>
       <input
         id="header-search"
         name="headerSearch"
         type="search"
-        placeholder="O que você procura hoje?"
-        [(ngModel)]="searchQuery"
+        placeholder="Pesquise por produtos ou marcas"
         autocomplete="off"
       />
-      <button type="submit">Buscar</button>
-=======
-      <img src="assets/logo-proenca.svg" alt="Logo Supermercado Proença" />
-    </a>
-    <form class="header__search" role="search" (submit)="preventDefault($event)">
-      <label class="sr-only" for="header-search">Pesquise por produtos ou marcas</label>
-      <input id="header-search" type="search" placeholder="Pesquise por produtos ou marcas" />
       <button type="submit" aria-label="Buscar">
         <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
           <path
@@ -29,7 +19,6 @@
           />
         </svg>
       </button>
->>>>>>> origin/main
     </form>
     <nav class="header__actions" aria-label="Acesso rápido">
       <a
@@ -50,9 +39,7 @@
             />
           </svg>
           <svg *ngSwitchCase="'orders'" viewBox="0 0 24 24" role="img">
-            <path
-              d="M19 3H5a2 2 0 0 0-2 2v16l9-4 9 4V5a2 2 0 0 0-2-2z"
-            />
+            <path d="M19 3H5a2 2 0 0 0-2 2v16l9-4 9 4V5a2 2 0 0 0-2-2z" />
           </svg>
           <svg *ngSwitchCase="'cart'" viewBox="0 0 24 24" role="img">
             <path

@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { NgFor } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-=======
 import { NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
->>>>>>> origin/main
 
 interface HeaderLink {
   label: string;
@@ -25,19 +19,11 @@ interface HeaderAction {
 @Component({
   selector: 'app-header',
   standalone: true,
-<<<<<<< HEAD
-  imports: [NgFor, RouterLink, RouterLinkActive, FormsModule],
-=======
   imports: [NgFor, NgSwitch, NgSwitchCase, RouterLink, RouterLinkActive],
->>>>>>> origin/main
   templateUrl: './index.html',
   styleUrl: './styles.scss'
 })
 export class HeaderComponent {
-  searchQuery = '';
-
-  constructor(private readonly router: Router) {}
-
   readonly mainLinks: HeaderLink[] = [
     { label: 'Todos os Corredores', path: '' },
     { label: 'Ofertas Relâmpago', path: '/produtos' },
@@ -50,9 +36,6 @@ export class HeaderComponent {
     { label: 'Contato', path: '/contato' }
   ];
 
-<<<<<<< HEAD
-  onSearch(event: Event): void {
-=======
   readonly actions: HeaderAction[] = [
     {
       label: 'Entrar',
@@ -80,18 +63,7 @@ export class HeaderComponent {
     }
   ];
 
-  preventDefault(event: Event): void {
->>>>>>> origin/main
+  onSearch(event: Event): void {
     event.preventDefault();
-    const query = this.searchQuery.trim();
-
-    if (!query) {
-      this.router.navigate(['/produtos']);
-      return;
-    }
-
-    this.router.navigate(['/produtos'], {
-      queryParams: { busca: query }
-    });
   }
 }
