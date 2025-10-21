@@ -1,0 +1,60 @@
+<section class="tracking">
+  <header class="tracking__header">
+    <h1>Acompanhe o seu pedido</h1>
+    <p>
+      Insira o código informado após a compra para acompanhar cada etapa da entrega. Utilize os
+      exemplos fictícios abaixo para ver como o rastreamento funciona.
+    </p>
+  </header>
+
+  <form class="tracking__form" [formGroup]="form" (ngSubmit)="lookup()" novalidate>
+    <label class="tracking__label" for="tracking-code">Código do pedido</label>
+    <div class="tracking__form-row">
+      <input
+        id="tracking-code"
+        type="text"
+        formControlName="code"
+        placeholder="Ex.: PRC-4821"
+        autocomplete="off"
+        [class.tracking__input--invalid]="codeControl?.invalid && codeControl?.touched"
+      />
+      <button type="submit">Rastrear pedido</button>
+    </div>
+    <p class="tracking__error" *ngIf="codeControl?.invalid && codeControl?.touched">
+      Informe um código válido com pelo menos quatro caracteres.
+    </p>
+    <div class="tracking__examples" aria-label="Códigos de rastreamento">
+      <span>Experimente:</span>
+      <button type="button" *ngFor="let order of orders" (click)="fillCode(order.code)">
+        {{ order.code }}
+      </button>
+    </div>
+  </form>
+
+  <section *ngIf="result" class="tracking__card" aria-live="polite">
+    <header class="tracking__summary">
+      <div>
+        <h2>Pedido {{ result.code }}</h2>
+        <p>{{ result.eta }}</p>
+      </div>
+      <span class="tracking__status" [ngClass]="statusClass(result)">{{ result.statusLabel }}</span>
+    </header>
+    <ol class="tracking__timeline">
+      <li *ngFor="let step of result.steps; trackBy: trackStep">
+        <header class="tracking__timeline-header">
+          <h3>{{ step.title }}</h3>
+          <time>{{ step.timestamp }}</time>
+        </header>
+        <p>{{ step.description }}</p>
+      </li>
+    </ol>
+  </section>
+
+  <section *ngIf="notFound" class="tracking__empty" aria-live="assertive">
+    <h2>Pedido não encontrado</h2>
+    <p>
+      Confira se o código foi digitado corretamente. Caso tenha dúvidas, entre em contato com nossa
+      equipe de atendimento.
+    </p>
+  </section>
+</section>

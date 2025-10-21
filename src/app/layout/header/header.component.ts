@@ -47,7 +47,7 @@ export class HeaderComponent {
     { label: 'Início', path: '' },
     { label: 'Ofertas Relâmpago', path: '/produtos' },
     { label: 'Clube Proença', path: '', fragment: 'clube-beneficios' },
-    { label: 'Rastreamento', path: '/produtos', fragment: 'rastreamento' },
+    { label: 'Rastreamento', path: '/rastreamento' },
     { label: 'Drogaria', path: '/produtos' },
     { label: 'Bebidas', path: '/produtos' },
     { label: 'Hortifruti', path: '/produtos' },
@@ -67,8 +67,7 @@ export class HeaderComponent {
     {
       label: 'Acompanhar pedido',
       description: 'Status em tempo real',
-      path: '/produtos',
-      fragment: 'rastreamento',
+      path: '/rastreamento',
       icon: 'tracking'
     },
     {
