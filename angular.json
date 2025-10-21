@@ -21,7 +21,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -60,6 +60,6 @@
   },
   "defaultProject": "proenca-supermercado",
   "cli": {
-    "analytics": "544ae85b-023d-4abd-a4fb-29071d741c0c"
+    "analytics": false
   }
 }

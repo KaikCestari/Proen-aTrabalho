@@ -1,0 +1,35 @@
+<header class="header">
+  <div class="header__top">
+    <span class="header__badge">Clube Proença</span>
+    <span class="header__help">Atendimento 24h · 0800 123 456</span>
+  </div>
+  <div class="header__main">
+    <a class="header__brand" routerLink="">
+      <img src="assets/logo-proenca.svg" alt="Logo Proença" />
+      <div>
+        <strong>Proença</strong>
+        <small>Supermercados</small>
+      </div>
+    </a>
+    <form class="header__search" role="search" (submit)="preventDefault($event)">
+      <label class="sr-only" for="header-search">Buscar produtos</label>
+      <input id="header-search" type="search" placeholder="O que você procura hoje?" />
+      <button type="submit">Buscar</button>
+    </form>
+    <nav class="header__shortcuts" aria-label="Acesso rápido">
+      <a routerLink="/produtos" routerLinkActive="active">Ofertas</a>
+      <a routerLink="/produtos" routerLinkActive="active">Cartão Proença</a>
+      <a routerLink="/contato" routerLinkActive="active">Nossas Lojas</a>
+    </nav>
+  </div>
+  <nav class="header__nav" aria-label="Categorias principais">
+    <a
+      *ngFor="let link of mainLinks"
+      [routerLink]="link.path"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: link.path === '' }"
+    >
+      {{ link.label }}
+    </a>
+  </nav>
+</header>
