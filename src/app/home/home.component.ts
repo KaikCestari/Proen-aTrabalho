@@ -7,24 +7,7 @@ import { HomeHighlightsComponent } from './components/highlights/home-highlights
   selector: 'app-home',
   standalone: true,
   imports: [HomeHeroComponent, HomeDepartmentsComponent, HomeHighlightsComponent],
-  template: `
-    <div class="home">
-      <app-home-hero />
-      <app-home-departments />
-      <app-home-highlights />
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        display: block;
-      }
-
-      .home {
-        display: grid;
-        gap: 3rem;
-      }
-    `
-  ]
+  templateUrl: './index.html',
+  styleUrl: './styles.scss'
 })
 export class HomeComponent {}
