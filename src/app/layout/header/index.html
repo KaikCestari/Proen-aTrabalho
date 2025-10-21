@@ -1,10 +1,7 @@
 <header class="header">
-  <div class="header__top">
-    <span class="header__badge">Clube Proença</span>
-    <span class="header__help">Atendimento 24h · 0800 123 456</span>
-  </div>
   <div class="header__main">
     <a class="header__brand" routerLink="">
+<<<<<<< HEAD
       <img src="assets/logo.png" alt="Logo Proença" />
   
     </a>
@@ -19,14 +16,58 @@
         autocomplete="off"
       />
       <button type="submit">Buscar</button>
+=======
+      <img src="assets/logo-proenca.svg" alt="Logo Supermercado Proença" />
+    </a>
+    <form class="header__search" role="search" (submit)="preventDefault($event)">
+      <label class="sr-only" for="header-search">Pesquise por produtos ou marcas</label>
+      <input id="header-search" type="search" placeholder="Pesquise por produtos ou marcas" />
+      <button type="submit" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+          <path
+            d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79l5 4.99L20.49 19zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"
+          />
+        </svg>
+      </button>
+>>>>>>> origin/main
     </form>
-    <nav class="header__shortcuts" aria-label="Acesso rápido">
-      <a routerLink="/produtos" routerLinkActive="active">Ofertas</a>
-      <a routerLink="/produtos" routerLinkActive="active">Cartão Proença</a>
-      <a routerLink="/contato" routerLinkActive="active">Nossas Lojas</a>
+    <nav class="header__actions" aria-label="Acesso rápido">
+      <a
+        *ngFor="let action of actions"
+        [routerLink]="action.path"
+        routerLinkActive="active"
+        class="header__action"
+      >
+        <span class="header__action-icon" [ngSwitch]="action.icon" aria-hidden="true">
+          <svg *ngSwitchCase="'login'" viewBox="0 0 24 24" role="img">
+            <path
+              d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-3.33 0-10 1.67-10 5v1h20v-1c0-3.33-6.67-5-10-5z"
+            />
+          </svg>
+          <svg *ngSwitchCase="'benefits'" viewBox="0 0 24 24" role="img">
+            <path
+              d="M20 6h-2.18A3 3 0 0 0 15 4a3 3 0 0 0-3 3 3 3 0 0 0-3-3 3 3 0 0 0-2.82 2H4a2 2 0 0 0-2 2v2a4 4 0 0 0 3 3.87V21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7.13A4 4 0 0 0 22 10V8a2 2 0 0 0-2-2z"
+            />
+          </svg>
+          <svg *ngSwitchCase="'orders'" viewBox="0 0 24 24" role="img">
+            <path
+              d="M19 3H5a2 2 0 0 0-2 2v16l9-4 9 4V5a2 2 0 0 0-2-2z"
+            />
+          </svg>
+          <svg *ngSwitchCase="'cart'" viewBox="0 0 24 24" role="img">
+            <path
+              d="M7 4h-2l-1 2v2h2l3.6 7.59L8.25 19A1 1 0 0 0 9 20h10v-2H10l1.1-2h7.45a1 1 0 0 0 .95-.68L21 8H7.42z"
+            />
+          </svg>
+        </span>
+        <span class="header__action-text">
+          <small>{{ action.description }}</small>
+          <strong>{{ action.label }}</strong>
+        </span>
+      </a>
     </nav>
   </div>
-  <nav class="header__nav" aria-label="Categorias principais">
+  <nav class="header__categories" aria-label="Categorias principais">
     <a
       *ngFor="let link of mainLinks"
       [routerLink]="link.path"

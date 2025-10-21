@@ -4,5 +4,5 @@
 
 .home {
   display: grid;
-  gap: 3rem;
+  gap: clamp(2.5rem, 6vw, 4rem);
 }

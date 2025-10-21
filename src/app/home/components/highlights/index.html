@@ -1,13 +1,20 @@
-<section class="highlights">
+<section class="highlights" aria-labelledby="offers-title">
   <header class="highlights__header">
-    <h2>Destaques para você</h2>
-    <p>Confira serviços digitais e programas de fidelidade inspirados nas melhores experiências.</p>
+    <h2 id="offers-title">Ofertas que são a cara do Proença</h2>
+    <p>
+      Produtos selecionados com o visual e as cores do Carrefour para garantir a melhor experiência ao
+      cliente Proença.
+    </p>
   </header>
   <div class="highlights__grid">
-    <article *ngFor="let highlight of highlights">
-      <span class="highlights__badge">{{ highlight.badge }}</span>
-      <h3>{{ highlight.title }}</h3>
-      <p>{{ highlight.description }}</p>
+    <article *ngFor="let offer of offers">
+      <div class="highlights__image">
+        <img [src]="offer.image" [alt]="offer.title" loading="lazy" />
+      </div>
+      <h3>{{ offer.title }}</h3>
+      <p class="highlights__promo">{{ offer.promo }}</p>
+      <p class="highlights__description">{{ offer.description }}</p>
+      <a class="highlights__cta" routerLink="/produtos">Adicionar ao carrinho</a>
     </article>
   </div>
 </section>

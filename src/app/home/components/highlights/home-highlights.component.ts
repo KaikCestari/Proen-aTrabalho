@@ -1,40 +1,52 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
-interface Highlight {
+interface ProductOffer {
   title: string;
+  promo: string;
   description: string;
-  badge: string;
+  image: string;
 }
 
 @Component({
   selector: 'app-home-highlights',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, RouterLink],
   templateUrl: './index.html',
   styleUrl: './styles.scss'
 })
 export class HomeHighlightsComponent {
-  readonly highlights: Highlight[] = [
+  readonly offers: ProductOffer[] = [
     {
-      title: 'Retira Rápido',
-      description: 'Compre online e retire na loja em até 2 horas com comunicação em tempo real.',
-      badge: 'Clique & Retire'
+      title: 'Macarrão Barilla 500g',
+      promo: 'Leve 4, pague 3',
+      description: 'Estoque ideal para a semana com a qualidade que você já conhece.',
+      image: 'https://via.placeholder.com/280x200/fafafa/0038a8?text=Macarrao+Barilla'
     },
     {
-      title: 'Entrega Programada',
-      description: 'Escolha o melhor horário para receber suas compras em casa, sem surpresas.',
-      badge: 'Delivery'
+      title: 'Café Proença Especial 500g',
+      promo: '2ª unidade com 25% OFF',
+      description: 'Blend torrado e moído exclusivo do Clube Proença inspirado no sabor Carrefour.',
+      image: 'https://via.placeholder.com/280x200/f5f5f5/e1001a?text=Cafe+Especial'
     },
     {
-      title: 'Cashback Clube',
-      description: 'Acumule cashback nas compras do mês e utilize nos próximos pedidos.',
-      badge: 'Cashback'
+      title: 'Detergente Líquido 3L',
+      promo: 'Economia do mês',
+      description: 'Limpeza profunda com fragrância suave e rendimento surpreendente.',
+      image: 'https://via.placeholder.com/280x200/ffffff/0038a8?text=Detergente'
     },
     {
-      title: 'App Proença',
-      description: 'Promoções exclusivas, pagamento por QR Code e lista compartilhada com a família.',
-      badge: 'Digital'
+      title: 'Vinho Chileno Reservado',
+      promo: '30% de desconto',
+      description: 'Seleção especial para harmonizar com momentos únicos ao melhor preço.',
+      image: 'https://via.placeholder.com/280x200/f0f4ff/0038a8?text=Vinho+Reservado'
+    },
+    {
+      title: 'Kit Cuidados Diários',
+      promo: 'Compre 3 e ganhe necessaire',
+      description: 'Produtos de higiene pessoal com brindes exclusivos do Supermercado Proença.',
+      image: 'https://via.placeholder.com/280x200/fff1f3/e1001a?text=Cuidados+Diarios'
     }
   ];
 }
