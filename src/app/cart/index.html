@@ -1,0 +1,81 @@
+<section class="cart">
+  <header class="cart__header">
+    <h1>Resumo de compras</h1>
+    <p>Revise seus produtos antes de finalizar o pagamento.</p>
+  </header>
+
+  <div *ngIf="cartItems.length === 0" class="cart__empty">
+    <p>Seu carrinho está vazio no momento.</p>
+    <a routerLink="/produtos" class="cart__link">Explorar produtos</a>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="cart__body">
+    <ul class="cart__list">
+      <li *ngFor="let entry of cartItems; trackBy: trackByCartItem">
+        <div class="cart-item__details">
+          <strong>{{ entry.product.name }}</strong>
+          <span>{{ entry.product.price | currency: 'BRL':'symbol-narrow' }}</span>
+        </div>
+        <p class="cart-item__description">{{ entry.product.description }}</p>
+        <div class="cart-item__controls">
+          <button type="button" (click)="decreaseQuantity(entry.product)" aria-label="Diminuir quantidade">
+            −
+          </button>
+          <span class="cart-item__quantity">{{ entry.quantity }}</span>
+          <button type="button" (click)="increaseQuantity(entry.product)" aria-label="Aumentar quantidade">
+            +
+          </button>
+          <button
+            type="button"
+            class="cart-item__remove"
+            (click)="removeFromCart(entry.product)"
+            aria-label="Remover item"
+          >
+            Remover
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <aside class="cart__summary">
+      <h2>Totais</h2>
+      <dl>
+        <div>
+          <dt>Total de itens</dt>
+          <dd>{{ totalQuantity() }}</dd>
+        </div>
+        <div>
+          <dt>Total a pagar</dt>
+          <dd>{{ cartTotal() | currency: 'BRL':'symbol-narrow' }}</dd>
+        </div>
+      </dl>
+
+      <button type="button" class="cart__checkout" (click)="finalizeCheckout()">
+        Gerar pagamento PIX
+      </button>
+
+      <section class="cart__pix" *ngIf="pixCheckoutVisible">
+        <header>
+          <span class="cart__pix-badge">Pagamento instantâneo</span>
+          <h3>Escaneie para pagar com PIX</h3>
+          <p>Use a câmera do aplicativo do banco ou copie o código abaixo.</p>
+        </header>
+        <figure class="cart__pix-qr">
+          <img [src]="pixQrDataUrl" alt="QR Code PIX fictício" />
+          <figcaption>Valor total: {{ cartTotal() | currency: 'BRL':'symbol-narrow' }}</figcaption>
+        </figure>
+        <div class="cart__pix-copy">
+          <code>{{ pixCode }}</code>
+          <button type="button" (click)="copyPixCode()">
+            {{ pixCopied ? 'Código copiado!' : 'Copiar código PIX' }}
+          </button>
+          <span class="cart__pix-feedback" *ngIf="pixCopied" aria-live="polite">
+            Cole no aplicativo do banco para concluir o pagamento.
+          </span>
+        </div>
+      </section>
+
+      <a routerLink="/produtos" class="cart__link cart__link--secondary">Continuar comprando</a>
+    </aside>
+  </div>
+</section>

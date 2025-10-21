@@ -1,23 +1,14 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-
-interface ProductItem {
-  name: string;
-  description: string;
-  price: number;
-}
+import { CartService } from '../cart/cart.service';
+import { CartEntry, ProductItem } from '../cart/cart.types';
 
 interface ProductCategory {
   name: string;
   description: string;
   items: ProductItem[];
-}
-
-interface CartEntry {
-  product: ProductItem;
-  quantity: number;
 }
 
 @Component({
@@ -28,6 +19,8 @@ interface CartEntry {
   styleUrl: './styles.scss'
 })
 export class ProductsComponent {
+  private readonly cartService = inject(CartService);
+  private readonly router = inject(Router);
   readonly categories: ProductCategory[] = [
     {
       name: 'Hortifrúti',
@@ -87,6 +80,10 @@ export class ProductsComponent {
   private readonly destroyRef = inject(DestroyRef);
 
   constructor(private readonly route: ActivatedRoute) {
+    this.cartService.items$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((items) => {
+      this.cartItems = items;
+    });
+
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
       const term = (params.get('busca') ?? '').trim();
       this.currentQuery = term;
@@ -95,22 +92,11 @@ export class ProductsComponent {
   }
 
   addToCart(product: ProductItem): void {
-    const entry = this.cartItems.find((item) => item.product.name === product.name);
-
-    if (entry) {
-      entry.quantity += 1;
-      this.cartItems = [...this.cartItems];
-    } else {
-      this.cartItems = [...this.cartItems, { product, quantity: 1 }];
-    }
+    this.cartService.add(product);
   }
 
   increaseQuantity(product: ProductItem): void {
-    const entry = this.cartItems.find((item) => item.product.name === product.name);
-    if (entry) {
-      entry.quantity += 1;
-      this.cartItems = [...this.cartItems];
-    }
+    this.cartService.increase(product);
   }
 
   decreaseQuantity(product: ProductItem): void {
@@ -120,23 +106,30 @@ export class ProductsComponent {
     }
 
     if (entry.quantity === 1) {
-      this.removeFromCart(product);
+      this.cartService.remove(product);
     } else {
-      entry.quantity -= 1;
-      this.cartItems = [...this.cartItems];
+      this.cartService.decrease(product);
     }
   }
 
   removeFromCart(product: ProductItem): void {
-    this.cartItems = this.cartItems.filter((item) => item.product.name !== product.name);
+    this.cartService.remove(product);
   }
 
   totalQuantity(): number {
-    return this.cartItems.reduce((total, item) => total + item.quantity, 0);
+    return this.cartService.totalQuantity();
   }
 
   cartTotal(): number {
-    return this.cartItems.reduce((total, item) => total + item.product.price * item.quantity, 0);
+    return this.cartService.totalValue();
+  }
+
+  navigateToCart(): void {
+    if (this.cartItems.length === 0) {
+      return;
+    }
+
+    this.router.navigate(['/carrinho']);
   }
 
   trackByCategory(index: number, category: ProductCategory): string {

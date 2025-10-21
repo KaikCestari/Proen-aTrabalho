@@ -54,22 +54,22 @@
 .header__search button {
   border: none;
   padding: 0 1.75rem;
-  background: #e1001a;
+  background: transparent;
   display: grid;
   place-items: center;
+  border-left: 1px solid rgba(15, 76, 197, 0.1);
   cursor: pointer;
-  transition: filter 0.2s ease, transform 0.2s ease;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .header__search button:hover {
-  filter: brightness(1.05);
   transform: translateY(-1px);
 }
 
 .header__search svg {
   width: 1.25rem;
   height: 1.25rem;
-  fill: #ffffff;
+  fill: #0f4cc5;
 }
 
 .header__actions {
@@ -94,14 +94,14 @@
 }
 
 .header__action.active .header__action-text strong {
-  color: #ffdfe3;
+  color: #cfe1ff;
 }
 
 .header__action-icon {
   width: 48px;
   height: 48px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(225, 0, 26, 0.25) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(14, 165, 233, 0.25) 100%);
   display: grid;
   place-items: center;
   backdrop-filter: blur(6px);
@@ -153,9 +153,9 @@
 
 .header__categories a:hover,
 .header__categories a.active {
-  color: #e1001a;
-  background: rgba(0, 56, 168, 0.08);
-  box-shadow: 0 8px 16px rgba(0, 56, 168, 0.08);
+  color: #0f4cc5;
+  background: rgba(15, 76, 197, 0.12);
+  box-shadow: 0 8px 16px rgba(15, 76, 197, 0.12);
 }
 
 .sr-only {

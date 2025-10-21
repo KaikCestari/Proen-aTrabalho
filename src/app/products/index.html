@@ -30,7 +30,7 @@
         </div>
       </article>
     </div>
-    <aside class="products__cart" aria-label="Carrinho de compras">
+    <aside class="products__cart" id="rastreamento" aria-label="Carrinho de compras">
       <header>
         <h2>Carrinho</h2>
         <span class="products__cart-count">{{ totalQuantity() }} itens</span>
@@ -73,7 +73,12 @@
           <dd>{{ cartTotal() | currency: 'BRL':'symbol-narrow' }}</dd>
         </div>
       </dl>
-      <button type="button" class="products__checkout" [disabled]="cartItems.length === 0">
+      <button
+        type="button"
+        class="products__checkout"
+        [disabled]="cartItems.length === 0"
+        (click)="navigateToCart()"
+      >
         Finalizar compra
       </button>
     </aside>
