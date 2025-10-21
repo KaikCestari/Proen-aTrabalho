@@ -1,0 +1,29 @@
+<footer class="footer">
+  <div class="footer__grid">
+    <section class="footer__brand">
+      <strong>Supermercado Proença</strong>
+      <p>
+        Inspirado na experiência Carrefour, entregamos praticidade, ofertas exclusivas e serviços
+        digitais para transformar a rotina de compras dos nossos clientes.
+      </p>
+    </section>
+    <section *ngFor="let section of sections" class="footer__section">
+      <h3>{{ section.title }}</h3>
+      <ul>
+        <li *ngFor="let link of section.links">
+          <a href="#">{{ link }}</a>
+        </li>
+      </ul>
+    </section>
+    <section class="footer__contact">
+      <h3>Fale com a gente</h3>
+      <p>Central de relacionamento: 0800 123 456</p>
+      <p>Whatsapp: (18) 99750-8457</p>
+      <p>Segunda a sábado das 8h às 22h</p>
+    </section>
+  </div>
+  <div class="footer__bottom">
+    <small>© {{ currentYear }} Supermercado Proença. Todos os direitos reservados.</small>
+    <small>Política de Privacidade · Termos de Uso</small>
+  </div>
+</footer>
