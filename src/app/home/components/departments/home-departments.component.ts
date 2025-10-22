@@ -52,11 +52,18 @@ export class HomeDepartmentsComponent implements OnInit {
       discountPrice: 44.95
     },
     {
-      name: 'Cesta Gourmet Vegan',
+      name: 'Cesta Gourmet Vegano',
       description: 'Produtos veganos selecionados para uma alimentação saudável.',
       imageUrl: 'https://images.tcdn.com.br/img/img_prod/795791/cesta_de_cafe_da_manha_vegana_caminho_da_fazenda_933_1_9740ab85a19a820ab18e7c7e96a49a9d.jpeg',
       originalPrice: 79.9,
       discountPrice: 39.95
+    },
+    {
+      name: `Arroz Premium 5kg`,
+      description: 'Arroz branco tipo 1, grãos longos e selecionados.',
+      imageUrl: 'https://prezunic.vtexassets.com/arquivos/ids/177896-1200-auto?v=638344613617770000&width=1200&height=auto&aspect=true',
+      originalPrice: 24.9,
+      discountPrice: 12.45
     }
   ];
 

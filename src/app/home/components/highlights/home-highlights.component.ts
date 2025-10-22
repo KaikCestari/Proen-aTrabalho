@@ -19,10 +19,10 @@ interface ProductOffer {
 export class HomeHighlightsComponent {
   readonly offers: ProductOffer[] = [
     {
-      title: 'Macarrão Barilla 500g',
+      title: 'Macarrão Renata 500g',
       promo: 'Leve 4, pague 3',
       description: 'Estoque ideal para a semana com a qualidade que você já conhece.',
-      image: 'https://via.placeholder.com/280x200/fafafa/0038a8?text=Macarrao+Barilla'
+      image: 'https://www.davo.com.br/ccstore/v1/images/?source=/file/v7173402153024082117/products/prod_7896022200213.imagem1.jpg&height=940&width=940'
     },
     {
       title: 'Café Proença Especial 500g',
