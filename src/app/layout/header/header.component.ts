@@ -45,14 +45,10 @@ export class HeaderComponent {
 
   readonly mainLinks: HeaderLink[] = [
     { label: 'Início', path: '' },
-    { label: 'Ofertas Relâmpago', path: '/produtos' },
+    { label: 'Ofertas Relâmpago', path: '' },
     { label: 'Clube Proença', path: '', fragment: 'clube-beneficios' },
     { label: 'Rastreamento', path: '/rastreamento' },
-    { label: 'Drogaria', path: '/produtos' },
-    { label: 'Bebidas', path: '/produtos' },
-    { label: 'Hortifruti', path: '/produtos' },
-    { label: 'Casa & Limpeza', path: '/produtos' },
-    { label: 'Beleza & Cuidados', path: '/produtos' },
+    {label: 'Produtos', path: '/produtos' },
     { label: 'Contato', path: '/contato' }
   ];
 
