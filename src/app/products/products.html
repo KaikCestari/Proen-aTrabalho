@@ -1,10 +1,18 @@
 <section class="products">
+  <figure class="products__promo">
+    <img
+      src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80"
+      alt="Prateleiras com produtos frescos em promoção no Supermercado Proença"
+    />
+  </figure>
   <header class="products__header">
-    <h1>Nossos Produtos</h1>
-    <p>
-      Do hortifrúti ao açougue, selecionamos cuidadosamente os produtos para garantir frescor e
-      qualidade. Monte seu carrinho e finalize a compra em poucos cliques.
-    </p>
+    <div class="products__intro">
+      <h1>Nossos Produtos</h1>
+      <p>
+        Do hortifrúti ao açougue, selecionamos cuidadosamente os produtos para garantir frescor e
+        qualidade. Monte seu carrinho e finalize a compra em poucos cliques.
+      </p>
+    </div>
   </header>
   <div class="products__layout">
     <div class="products__catalog">
@@ -18,13 +26,18 @@
         </header>
         <div class="products__items">
           <div class="product" *ngFor="let item of category.items; trackBy: trackByItem">
-            <div class="product__info">
-              <h3>{{ item.name }}</h3>
-              <p>{{ item.description }}</p>
+            <div class="product__media">
+              <img [src]="item.imageUrl" [alt]="item.name" loading="lazy" />
             </div>
-            <div class="product__actions">
-              <strong>{{ item.price | currency: 'BRL':'symbol-narrow' }}</strong>
-              <button type="button" (click)="addToCart(item)">Adicionar</button>
+            <div class="product__content">
+              <div class="product__info">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+              </div>
+              <div class="product__actions">
+                <strong>{{ item.price | currency: 'BRL':'symbol-narrow' }}</strong>
+                <button type="button" (click)="addToCart(item)">Adicionar</button>
+              </div>
             </div>
           </div>
         </div>

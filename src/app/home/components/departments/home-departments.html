@@ -1,14 +1,28 @@
-<section class="departments">
-  <header class="departments__header">
-    <h2>Compre por departamento</h2>
-    <p>Seleção rápida inspirada na vitrine digital do Carrefour para facilitar suas compras.</p>
+<section class="promo">
+  <header class="promo__header">
+    <div class="promo__intro">
+      <h2>Produtos mais comprados</h2>
+      <p>50% de desconto nos queridinhos do Proença, mas só até acabar o tempo!</p>
+    </div>
+    <div class="promo__timer" *ngIf="timeLeft">
+      <span class="promo__timer-label">Promoção termina em</span>
+      <span class="promo__timer-count">{{ timeLeft }}</span>
+    </div>
   </header>
-  <div class="departments__grid">
-    <article *ngFor="let department of departments" [style.--badge-color]="department.color">
-      <span class="departments__icon">{{ department.icon }}</span>
-      <h3>{{ department.name }}</h3>
-      <p>{{ department.description }}</p>
-      <a href="#">Ver ofertas</a>
+  <div class="promo__grid">
+    <article *ngFor="let product of products">
+      <figure class="promo__media">
+        <img [src]="product.imageUrl" [alt]="product.name" loading="lazy" />
+        <span class="promo__badge">50% OFF</span>
+      </figure>
+      <div class="promo__content">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <div class="promo__prices">
+          <span class="promo__price-original">{{ product.originalPrice | currency: 'BRL':'symbol-narrow' }}</span>
+          <span class="promo__price-discount">{{ product.discountPrice | currency: 'BRL':'symbol-narrow' }}</span>
+        </div>
+      </div>
     </article>
   </div>
 </section>
