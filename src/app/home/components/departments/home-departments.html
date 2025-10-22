@@ -22,6 +22,9 @@
           <span class="promo__price-original">{{ product.originalPrice | currency: 'BRL':'symbol-narrow' }}</span>
           <span class="promo__price-discount">{{ product.discountPrice | currency: 'BRL':'symbol-narrow' }}</span>
         </div>
+        <div class="promo__actions">
+          <button type="button" class="promo__buy" (click)="buyProduct(product)">Comprar</button>
+        </div>
       </div>
     </article>
   </div>

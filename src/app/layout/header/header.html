@@ -47,7 +47,12 @@
           </svg>
         </span>
         <span class="header__action-text">
-          <small>{{ action.description }}</small>
+          <small>
+            {{ action.description }}
+            <ng-container *ngIf="action.icon === 'cart'">
+              ({{ cartQuantity }})
+            </ng-container>
+          </small>
           <strong>{{ action.label }}</strong>
         </span>
       </a>

@@ -1,5 +1,7 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
+import { CartService } from '../../../cart/cart.service';
+import { ProductItem } from '../../../cart/cart.types';
 
 interface PromoProduct {
   name: string;
@@ -18,6 +20,7 @@ interface PromoProduct {
 })
 export class HomeDepartmentsComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cartService = inject(CartService);
   private readonly promoDeadline = new Date(Date.now() + 1000 * 60 * 60 * 6);
 
   timeLeft = this.formatTimeLeft();
@@ -79,6 +82,17 @@ export class HomeDepartmentsComponent implements OnInit {
     tick();
     const intervalId = window.setInterval(tick, 1000);
     this.destroyRef.onDestroy(() => window.clearInterval(intervalId));
+  }
+
+  buyProduct(product: PromoProduct): void {
+    const item: ProductItem = {
+      name: product.name,
+      description: product.description,
+      price: product.discountPrice,
+      imageUrl: product.imageUrl
+    };
+
+    this.cartService.add(item);
   }
 
   private formatTimeLeft(): string {

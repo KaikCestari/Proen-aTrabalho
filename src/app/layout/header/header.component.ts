@@ -1,8 +1,9 @@
 import { Component, DestroyRef, inject } from '@angular/core';
-import { NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CartService } from '../../cart/cart.service';
 
 interface HeaderLink {
   label: string;
@@ -23,14 +24,16 @@ interface HeaderAction {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgFor, NgSwitch, NgSwitchCase, RouterLink, RouterLinkActive],
+  imports: [NgFor, NgIf, NgSwitch, NgSwitchCase, RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
 export class HeaderComponent {
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cartService = inject(CartService);
   searchValue = '';
+  cartQuantity = 0;
 
   constructor() {
     this.syncSearchFromUrl();
@@ -41,6 +44,10 @@ export class HeaderComponent {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe(() => this.syncSearchFromUrl());
+
+    this.cartService.items$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((items) => {
+      this.cartQuantity = items.reduce((total, entry) => total + entry.quantity, 0);
+    });
   }
 
   readonly mainLinks: HeaderLink[] = [

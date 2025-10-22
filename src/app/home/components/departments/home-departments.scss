@@ -140,6 +140,37 @@ article:hover {
   font-weight: 700;
 }
 
+.promo__actions {
+  margin-top: 0.5rem;
+}
+
+.promo__buy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  background: #0c1588;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(15, 56, 190, 0.753);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.promo__buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(225, 0, 26, 0.35);
+}
+
+.promo__buy:focus-visible {
+  outline: 3px solid rgba(0, 56, 168, 0.3);
+  outline-offset: 2px;
+}
+
 @media (max-width: 720px) {
   .promo__header {
     flex-direction: column;
