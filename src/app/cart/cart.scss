@@ -275,8 +275,8 @@
   color: #e2e8f0;
 }
 
-.cart__pix-copy button {
-  justify-self: flex-start;
+.cart__pix-copy-button {
+  width: 100%;
   background: linear-gradient(135deg, #0f4cc5 0%, #0a3a96 100%);
   color: #fff;
   border: none;
@@ -287,8 +287,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 16px 28px rgba(15, 76, 197, 0.35);
 }
-
-.cart__pix-copy button:hover {
+.cart__pix-copy-button:hover {
   transform: translateY(-1px);
   box-shadow: 0 20px 35px rgba(15, 76, 197, 0.4);
 }

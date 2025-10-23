@@ -66,13 +66,13 @@
         </figure>
         <div class="cart__pix-copy">
           <code>{{ pixCode }}</code>
-          <button type="button" (click)="copyPixCode()">
-            {{ pixCopied ? 'Código copiado!' : 'Copiar código PIX' }}
-          </button>
-          <span class="cart__pix-feedback" *ngIf="pixCopied" aria-live="polite">
-            Cole no aplicativo do banco para concluir o pagamento.
-          </span>
         </div>
+        <button type="button" class="cart__pix-copy-button" (click)="copyPixCode()">
+          {{ pixCopied ? 'Código copiado!' : 'Copiar código PIX' }}
+        </button>
+        <span class="cart__pix-feedback" *ngIf="pixCopied" aria-live="polite">
+          Cole no aplicativo do banco para concluir o pagamento.
+        </span>
       </section>
 
       <a routerLink="/produtos" class="cart__link cart__link--secondary">Continuar comprando</a>
