@@ -9,8 +9,8 @@ import { CartEntry, ProductItem } from './cart.types';
   selector: 'app-cart',
   standalone: true,
   imports: [NgIf, NgFor, CurrencyPipe, RouterLink],
-  templateUrl: './cart.html',
-  styleUrl: './cart.scss'
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
   cartItems: CartEntry[] = [];

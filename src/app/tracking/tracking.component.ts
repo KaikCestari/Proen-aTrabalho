@@ -22,8 +22,8 @@ interface TrackingOrder {
   selector: 'app-tracking',
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, NgFor, NgClass],
-  templateUrl: './tracking.html',
-  styleUrl: './tracking.scss'
+  templateUrl: './tracking.component.html',
+  styleUrls: ['./tracking.component.scss']
 })
 export class TrackingComponent {
   readonly orders: TrackingOrder[] = [

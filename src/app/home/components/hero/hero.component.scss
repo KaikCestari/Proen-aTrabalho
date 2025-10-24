@@ -15,26 +15,33 @@
 
 .hero__banner {
   position: relative;
-  min-height: clamp(320px, 45vw, 420px);
+  min-block-size: clamp(320px, 45vw, 420px);
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: clamp(2rem, 5vw, 5rem);
-  width: 100%;
+  inline-size: 100%;
 }
 
 .hero__image {
   position: absolute;
   inset: 0;
-  background: linear-gradient(110deg, rgba(0, 56, 168, 0.85) 0%, rgba(0, 56, 168, 0.35) 50%, rgba(225, 0, 26, 0.7) 100%),
-    url('https://via.placeholder.com/1600x520/f5f5f5/0038a8?text=Ofertas+Supermercado+Proen%C3%A7a') center / cover
-      no-repeat;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(0, 43, 122, 0.85) 0%,
+      rgba(0, 56, 168, 0.45) 50%,
+      rgba(247, 193, 40, 0.7) 100%
+    ),
+    url('/assets/oferta-relampago-bg.png') top center / cover no-repeat;
+  background-position-y: 20%;
   opacity: 0.95;
 }
 
+
 .hero__content {
   position: relative;
-  max-width: 520px;
+  max-inline-size: 520px;
   display: grid;
   gap: 1.25rem;
   z-index: 1;
@@ -46,7 +53,7 @@
   padding: 0.4rem 1rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.9);
-  color: #0038a8;
+  color: #fff;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -61,7 +68,7 @@ h1 {
 }
 
 h1 strong {
-  color: #e1001a;
+  color: #f7c128;
   display: inline-block;
 }
 
@@ -82,19 +89,19 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #e1001a;
-  color: #ffffff;
+  background: #f7c128;
+  color: #0038a8;
   padding: 0.95rem 2rem;
   border-radius: 999px;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 18px 32px rgba(225, 0, 26, 0.35);
+  box-shadow: 0 18px 32px rgba(247, 193, 40, 0.35);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hero__cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 22px 38px rgba(225, 0, 26, 0.45);
+  box-shadow: 0 22px 38px rgba(247, 193, 40, 0.45);
 }
 
 .hero__link {
@@ -114,8 +121,8 @@ p {
 .hero__nav {
   display: grid;
   place-items: center;
-  width: 56px;
-  height: 56px;
+  inline-size: 56px;
+  block-size: 56px;
   background: rgba(255, 255, 255, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;

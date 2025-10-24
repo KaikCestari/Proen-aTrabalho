@@ -15,8 +15,8 @@ interface PromoProduct {
   selector: 'app-home-departments',
   standalone: true,
   imports: [NgFor, NgIf, CurrencyPipe],
-  templateUrl: './home-departments.html',
-  styleUrl: './home-departments.scss'
+  templateUrl: './departments.component.html',
+  styleUrls: ['./departments.component.scss']
 })
 export class HomeDepartmentsComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
