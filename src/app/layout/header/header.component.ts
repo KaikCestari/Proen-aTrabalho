@@ -25,8 +25,8 @@ interface HeaderAction {
   selector: 'app-header',
   standalone: true,
   imports: [NgFor, NgIf, NgSwitch, NgSwitchCase, RouterLink, RouterLinkActive],
-  templateUrl: './header.html',
-  styleUrl: './header.scss'
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
   private readonly router = inject(Router);
@@ -51,11 +51,11 @@ export class HeaderComponent {
   }
 
   readonly mainLinks: HeaderLink[] = [
-    { label: 'Início', path: '' },
-    { label: 'Ofertas Relâmpago', path: '' },
-    { label: 'Clube Proença', path: '', fragment: 'clube-beneficios' },
+    { label: 'Início', path: '/header' },
+    { label: 'Minha Conta', path: '/minha-conta' },
+    { label: 'Clube Proença', path: '/beneficios-clube-proenca' },
     { label: 'Rastreamento', path: '/rastreamento' },
-    {label: 'Produtos', path: '/produtos' },
+    { label: 'Produtos', path: '/produtos' },
     { label: 'Contato', path: '/contato' }
   ];
 
@@ -63,8 +63,8 @@ export class HeaderComponent {
     {
       label: 'Clube Proença',
       description: 'Benefícios e cashback',
-      path: '',
-      fragment: 'clube-beneficios',
+      path: '/beneficios-clube-proenca',
+      fragment: 'beneficios-clube-proenca',
       icon: 'benefits'
     },
     {

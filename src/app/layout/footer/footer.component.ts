@@ -10,8 +10,8 @@ interface FooterSection {
   selector: 'app-footer',
   standalone: true,
   imports: [NgFor],
-  templateUrl: './footer.html',
-  styleUrl: './footer.scss'
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
   readonly sections: FooterSection[] = [

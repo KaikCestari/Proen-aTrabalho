@@ -1,0 +1,128 @@
+$cor-primaria: #003366;
+$cor-secundaria: #FFC72C;
+
+.minha-conta-container {
+    max-inline-size: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: $cor-primaria;
+    margin-block-end: 25px;
+    border-block-end: 2px solid #eee;
+    padding-block-end: 10px;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 30px;
+}
+
+/* COLUNA ESQUERDA: MENU */
+.sidebar-menu {
+    flex: 0 0 250px;
+    /* Fixo em 250px de largura */
+    background-color: white;
+    padding: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    block-size: fit-content;
+    /* Para não esticar além do conteúdo */
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    padding: 12px 20px;
+    cursor: pointer;
+    color: #555;
+    border-inline-start: 4px solid transparent;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-menu li:hover {
+    background-color: #f0f0f0;
+}
+
+.sidebar-menu li.active {
+    background-color: #e0e0e0;
+    color: $cor-primaria;
+    font-weight: bold;
+    border-inline-start: 4px solid $cor-secundaria;
+}
+
+/* COLUNA DIREITA: CONTEÚDO PRINCIPAL */
+.main-content {
+    flex-grow: 1;
+}
+
+.card-content {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-block-start: 15px;
+}
+
+.btn-secondary {
+    background-color: #eee;
+    color: $cor-primaria;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-block-start: 15px;
+}
+
+.cashback-summary {
+    text-align: center;
+    padding: 30px;
+}
+
+.saldo-total {
+    font-size: 1.4em;
+    margin-block-end: 20px;
+}
+
+/* Estilos básicos para Botão Principal reutilizado */
+.btn-principal {
+    background-color: $cor-secundaria;
+    color: $cor-primaria;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-block-start: 10px;
+}
+
+/* Responsividade Básica */
+@media (max-width: 992px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar-menu {
+        flex: none;
+        inline-size: 100%;
+    }
+
+    .sidebar-menu li {
+        border-inline-start: none;
+        border-block-end: 1px solid #eee;
+    }
+
+    .sidebar-menu li.active {
+        border-inline-start: none;
+        border-block-end: 2px solid $cor-secundaria;
+    }
+}
