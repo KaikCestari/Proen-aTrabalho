@@ -39,13 +39,10 @@
   display: grid;
   gap: 0.35rem;
   text-align: center;
-<<<<<<< HEAD:src/app/home/components/departments/home-departments.scss
   color: #0314ff;
   min-width: 220px;
-=======
   color: #e1001a;
   min-inline-size: 220px;
->>>>>>> feature/PROENCA-04:src/app/home/components/departments/departments.component.scss
 }
 
 .promo__timer-label {
@@ -100,15 +97,12 @@ article:hover {
 
 .promo__badge {
   position: absolute;
-<<<<<<< HEAD:src/app/home/components/departments/home-departments.scss
   top: 0rem;
   left: 0rem;
   background: #16ace7e8;
-=======
   inset-block-start: 0rem;
   inset-inline-start: 0rem;
   background: #ff0000;
->>>>>>> feature/PROENCA-04:src/app/home/components/departments/departments.component.scss
   color: #fff;
   font-weight: 700;
   padding: 0.4rem 0.9rem;
