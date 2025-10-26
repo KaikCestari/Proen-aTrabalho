@@ -52,8 +52,8 @@ export class HeaderComponent {
 
   readonly mainLinks: HeaderLink[] = [
     { label: 'Início', path: '/header' },
-    { label: 'Ofertas Relâmpago', path: '/ofertas' },
-    { label: 'Clube Proença', path: '/clube-beneficios', fragment: 'clube-beneficios' },
+    { label: 'Minha Conta', path: '/minha-conta' },
+    { label: 'Clube Proença', path: '/beneficios-clube-proenca' },
     { label: 'Rastreamento', path: '/rastreamento' },
     { label: 'Produtos', path: '/produtos' },
     { label: 'Contato', path: '/contato' }
@@ -63,8 +63,8 @@ export class HeaderComponent {
     {
       label: 'Clube Proença',
       description: 'Benefícios e cashback',
-      path: '',
-      fragment: 'clube-beneficios',
+      path: '/beneficios-clube-proenca',
+      fragment: 'beneficios-clube-proenca',
       icon: 'benefits'
     },
     {

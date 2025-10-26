@@ -1,4 +1,4 @@
-<header class="header" style="scroll-margin-top: 100%;">
+<header class="header" id="header" style="scroll-margin-top: 100%;">
   <div class="header__main">
     <a class="header__brand" routerLink="">
       <img src="assets/logo.png" alt="Logo Proença" />
@@ -64,7 +64,6 @@
       [routerLink]="link.path"
       [fragment]="link.fragment"
       routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: link.path === '' }"
     >
       {{ link.label }}
     </a>
