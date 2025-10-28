@@ -4,10 +4,11 @@
 
         <aside class="sidebar-menu">
             <ul>
-                <li *ngFor="let link of menuLinks" [class.active]="currentPage === link.path"
-                    (click)="navigateTo(link.path)">
-                    <i [class]="link.iconClass"></i>
-                    {{ link.label }}
+                <li *ngFor="let link of menuLinks" [class.active]="currentPage === link.path">
+                    <button type="button" (click)="navigateTo(link.path)">
+                        <i [class]="link.iconClass"></i>
+                        {{ link.label }}
+                    </button>
                 </li>
             </ul>
         </aside>
@@ -15,39 +16,140 @@
         <main class="main-content">
 
             <div *ngIf="currentPage === 'perfil'">
-                <h2>Dados do Perfil</h2>
+                <h2>Editar Perfil</h2>
                 <div class="card-content">
-                    <p>Nome: João da Silva</p>
-                    <p>E-mail: joao&#64;exemplo.com</p>
-                    <button class="btn-secondary">Editar Informações</button>
+                    <form [formGroup]="profileForm" (ngSubmit)="submitProfile()">
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="profile-name">Nome completo</label>
+                                <input id="profile-name" type="text" formControlName="name" placeholder="Digite seu nome" />
+                                <span class="field-error" *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched">
+                                    Informe um nome com pelo menos 3 caracteres.
+                                </span>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="profile-email">E-mail</label>
+                                <input id="profile-email" type="email" formControlName="email" placeholder="seuemail@exemplo.com" />
+                                <span class="field-error" *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+                                    Informe um e-mail válido.
+                                </span>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="profile-phone">Telefone</label>
+                                <input id="profile-phone" type="text" formControlName="phone" placeholder="(00) 99999-9999" />
+                                <span class="field-error" *ngIf="profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched">
+                                    Informe um telefone de contato.
+                                </span>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="profile-document">CPF</label>
+                                <input id="profile-document" type="text" formControlName="document" placeholder="000.000.000-00" />
+                                <span class="field-error" *ngIf="profileForm.get('document')?.invalid && profileForm.get('document')?.touched">
+                                    Informe um CPF válido.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="status-message success" *ngIf="profileMessage">
+                            {{ profileMessage }}
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn-principal" type="submit">Salvar alterações</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
             <div *ngIf="currentPage === 'cashback'">
-                <h2>Seu Saldo Cashback</h2>
-                <div class="card-content cashback-summary">
-                    <p class="saldo-total">Saldo Disponível: <strong>R$ 45,50</strong></p>
-                    <button class="btn-principal" style="background-color: green; color: white;">Resgatar Saldo</button>
-                    <hr>
-                    <p>Próximo resgate em: 5 dias úteis.</p>
+                <h2>Resgatar Cashback</h2>
+                <div class="card-content">
+                    <p class="saldo-total">
+                        Saldo disponível:
+                        <strong>{{ availableCashback | currency:'BRL':'symbol':'1.2-2' }}</strong>
+                    </p>
+
+                    <form [formGroup]="cashbackForm" (ngSubmit)="redeemCashback()">
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="cashback-amount">Valor do resgate (mínimo de R$ 10,00)</label>
+                                <input id="cashback-amount" type="number" min="10" step="0.01" formControlName="amount" />
+                                <span class="field-error" *ngIf="cashbackForm.get('amount')?.invalid && cashbackForm.get('amount')?.touched">
+                                    Informe um valor a partir de R$ 10,00.
+                                </span>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="cashback-pix">Chave PIX para crédito</label>
+                                <input id="cashback-pix" type="text" formControlName="pixKey" placeholder="Ex: CPF, e-mail ou celular" />
+                                <span class="field-error" *ngIf="cashbackForm.get('pixKey')?.invalid && cashbackForm.get('pixKey')?.touched">
+                                    Informe uma chave PIX válida.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="status-message error" *ngIf="cashbackError">{{ cashbackError }}</div>
+                        <div class="status-message success" *ngIf="cashbackMessage">{{ cashbackMessage }}</div>
+
+                        <div class="form-actions">
+                            <button class="btn-principal" type="submit">Resgatar saldo</button>
+                        </div>
+                    </form>
+
+                    <p class="info-text">Resgates são processados em até 2 dias úteis.</p>
+                </div>
+            </div>
+
+            <div *ngIf="currentPage === 'alterar-senha'">
+                <h2>Alterar Senha</h2>
+                <div class="card-content">
+                    <form [formGroup]="passwordForm" (ngSubmit)="submitPassword()">
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="password-current">Senha atual</label>
+                                <input id="password-current" type="password" formControlName="currentPassword" />
+                                <span class="field-error" *ngIf="passwordForm.get('currentPassword')?.invalid && passwordForm.get('currentPassword')?.touched">
+                                    Informe sua senha atual.
+                                </span>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="password-new">Nova senha</label>
+                                <input id="password-new" type="password" formControlName="newPassword" />
+                                <span class="field-error" *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched">
+                                    A nova senha deve ter pelo menos 6 caracteres.
+                                </span>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="password-confirm">Confirmar nova senha</label>
+                                <input id="password-confirm" type="password" formControlName="confirmPassword" />
+                                <span class="field-error" *ngIf="passwordForm.get('confirmPassword')?.invalid && passwordForm.get('confirmPassword')?.touched">
+                                    Confirme a nova senha.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="status-message error" *ngIf="passwordError">{{ passwordError }}</div>
+                        <div class="status-message success" *ngIf="passwordMessage">{{ passwordMessage }}</div>
+
+                        <div class="form-actions">
+                            <button class="btn-principal" type="submit">Atualizar senha</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
             <div *ngIf="currentPage === 'pedidos'">
                 <h2>Histórico de Pedidos</h2>
                 <div class="card-content">
-                    <p>Aqui será listada a tabela de pedidos recentes.</p>
+                    <p>Em breve você poderá acompanhar todos os pedidos realizados pelo Clube Proença.</p>
                     <div class="pedido-item">
                         <strong>Pedido #1001</strong> - Data: 20/10/2025 - Total: R$ 150,00 - Status: Entregue
                     </div>
-                </div>
-            </div>
-
-            <div *ngIf="currentPage === 'configuracoes'">
-                <h2>Configurações da Conta</h2>
-                <div class="card-content">
-                    <p>Gerenciar Preferências de Notificação.</p>
-                    <button class="btn-secondary">Alterar Senha</button>
                 </div>
             </div>
 
