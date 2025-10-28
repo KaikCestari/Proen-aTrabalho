@@ -76,13 +76,15 @@
 }
 
 .clube-beneficio__hero-card {
-  background: rgba(255, 255, 255, 0.1);
+  background: #ffffff;
   border-radius: 16px;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   text-align: left;
+  color: #0b3b60;
+  box-shadow: 0 10px 30px rgba(11, 59, 96, 0.18);
 
   strong {
     font-size: 0.85rem;
@@ -98,7 +100,7 @@
 
   small {
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(11, 59, 96, 0.7);
   }
 }
 

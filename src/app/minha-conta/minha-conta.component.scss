@@ -105,6 +105,47 @@ h1 {
     margin-block-start: 10px;
 }
 
+.form-grid {
+    display: grid;
+    gap: 15px;
+
+    label {
+        display: flex;
+        flex-direction: column;
+        font-weight: 600;
+        color: #333;
+        font-size: 0.95rem;
+
+        input {
+            margin-block-start: 6px;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+    }
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-block-start: 5px;
+}
+
+.feedback {
+    margin-block-start: 15px;
+    font-size: 0.95rem;
+
+    &.feedback--success {
+        color: #0f9158;
+    }
+
+    &.feedback--error {
+        color: #c0392b;
+    }
+}
+
 /* Responsividade Básica */
 @media (max-width: 992px) {
     .content-wrapper {

@@ -17,9 +17,30 @@
             <div *ngIf="currentPage === 'perfil'">
                 <h2>Dados do Perfil</h2>
                 <div class="card-content">
-                    <p>Nome: João da Silva</p>
-                    <p>E-mail: joao&#64;exemplo.com</p>
-                    <button class="btn-secondary">Editar Informações</button>
+                    <ng-container *ngIf="!isEditingProfile; else editarPerfil">
+                        <p>Nome: {{ profile.nome }}</p>
+                        <p>E-mail: {{ profile.email }}</p>
+                        <button class="btn-secondary" (click)="startEditProfile()">Editar perfil</button>
+                    </ng-container>
+
+                    <ng-template #editarPerfil>
+                        <form (ngSubmit)="saveProfile()" class="form-grid">
+                            <label>
+                                Nome completo
+                                <input type="text" [(ngModel)]="editedProfile.nome" name="nome" required>
+                            </label>
+                            <label>
+                                E-mail
+                                <input type="email" [(ngModel)]="editedProfile.email" name="email" required>
+                            </label>
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" (click)="cancelEditProfile()">Cancelar</button>
+                                <button type="submit" class="btn-principal">Salvar alterações</button>
+                            </div>
+                        </form>
+                    </ng-template>
+
+                    <p *ngIf="profileMessage" class="feedback feedback--success">{{ profileMessage }}</p>
                 </div>
             </div>
 
@@ -27,9 +48,10 @@
                 <h2>Seu Saldo Cashback</h2>
                 <div class="card-content cashback-summary">
                     <p class="saldo-total">Saldo Disponível: <strong>R$ 45,50</strong></p>
-                    <button class="btn-principal" style="background-color: green; color: white;">Resgatar Saldo</button>
+                    <button class="btn-principal" style="background-color: green; color: white;" (click)="resgatarSaldo()">Resgatar Saldo</button>
                     <hr>
                     <p>Próximo resgate em: 5 dias úteis.</p>
+                    <p *ngIf="cashbackSuccess" class="feedback feedback--success">Saldo resgatado com sucesso! O valor será aplicado no próximo pedido elegível.</p>
                 </div>
             </div>
 
@@ -47,7 +69,29 @@
                 <h2>Configurações da Conta</h2>
                 <div class="card-content">
                     <p>Gerenciar Preferências de Notificação.</p>
-                    <button class="btn-secondary">Alterar Senha</button>
+                    <button *ngIf="!isChangingPassword" class="btn-secondary" (click)="iniciarAlteracaoSenha()">Alterar Senha</button>
+
+                        <form *ngIf="isChangingPassword" (ngSubmit)="salvarNovaSenha()" class="form-grid">
+                            <label>
+                                Senha atual
+                                <input type="password" [(ngModel)]="passwordForm.current" name="senhaAtual" required>
+                            </label>
+                            <label>
+                                Nova senha
+                                <input type="password" [(ngModel)]="passwordForm.nova" name="novaSenha" required minlength="6">
+                            </label>
+                            <label>
+                                Confirmar nova senha
+                                <input type="password" [(ngModel)]="passwordForm.confirmacao" name="confirmacaoSenha" required minlength="6">
+                            </label>
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" (click)="cancelarAlteracaoSenha()">Cancelar</button>
+                                <button type="submit" class="btn-principal" [disabled]="!senhaPodeSerSalva">Salvar nova senha</button>
+                            </div>
+                        </form>
+
+                    <p *ngIf="passwordError" class="feedback feedback--error">{{ passwordError }}</p>
+                    <p *ngIf="passwordMessage" class="feedback feedback--success">{{ passwordMessage }}</p>
                 </div>
             </div>
 
