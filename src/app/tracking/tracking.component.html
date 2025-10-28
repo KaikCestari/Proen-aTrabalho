@@ -16,11 +16,11 @@
         formControlName="code"
         placeholder="Ex.: PRC-4821"
         autocomplete="off"
-        [class.tracking__input--invalid]="codeControl?.invalid && codeControl?.touched"
+        [class.tracking__input--invalid]="codeControl.invalid && codeControl.touched"
       />
       <button type="submit">Rastrear pedido</button>
     </div>
-    <p class="tracking__error" *ngIf="codeControl?.invalid && codeControl?.touched">
+    <p class="tracking__error" *ngIf="codeControl.invalid && codeControl.touched">
       Informe um código válido com pelo menos quatro caracteres.
     </p>
     <div class="tracking__examples" aria-label="Códigos de rastreamento">

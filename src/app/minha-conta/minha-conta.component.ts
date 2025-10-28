@@ -28,29 +28,24 @@ export class MinhaContaComponent implements OnInit {
 
   currentPage: string = 'perfil'; // Rastreia a seção ativa
 
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Observa mudanças na rota para saber qual aba está ativa
-    this.activatedRoute.url.subscribe(urlSegments => {
-      // Pega o primeiro segmento após /minha-conta/
-      const segment = urlSegments[0]?.path || '/perfil'; 
-      this.currentPage = segment;
+    this.activatedRoute.queryParamMap.subscribe((params) => {
+      const tab = params.get('tab');
+      if (tab && this.menuLinks.some((link) => link.path === tab)) {
+        this.currentPage = tab;
+      }
     });
-    
-    // Opcional: Garante que ele inicie na aba 'perfil' se a URL estiver apenas em /minha-conta
-    if (!this.activatedRoute.snapshot.firstChild) {
-        this.router.navigate(['/perfil'], { relativeTo: this.activatedRoute });
-    }
   }
 
   // Método para navegar entre as abas
   navigateTo(path: string): void {
     this.currentPage = path;
-    // Navega para a rota relativa (ex: /minha-conta/cashback)
-    // this.router.navigate([path], { relativeTo: this.activatedRoute });
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: { tab: path },
+      replaceUrl: true
+    });
   }
 }

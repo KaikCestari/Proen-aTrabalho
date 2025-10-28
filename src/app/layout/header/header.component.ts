@@ -11,7 +11,7 @@ interface HeaderLink {
   fragment?: string;
 }
 
-type HeaderIcon = 'benefits' | 'tracking' | 'cart';
+type HeaderIcon = 'account' | 'tracking' | 'cart';
 
 interface HeaderAction {
   label: string;
@@ -51,9 +51,9 @@ export class HeaderComponent {
   }
 
   readonly mainLinks: HeaderLink[] = [
-    { label: 'Início', path: '/header' },
+    { label: 'Início', path: '/' },
     { label: 'Minha Conta', path: '/minha-conta' },
-    { label: 'Clube Proença', path: '/beneficios-clube-proenca' },
+    { label: 'Clube de Benefícios', path: '/clube-beneficio' },
     { label: 'Rastreamento', path: '/rastreamento' },
     { label: 'Produtos', path: '/produtos' },
     { label: 'Contato', path: '/contato' }
@@ -61,11 +61,10 @@ export class HeaderComponent {
 
   readonly actions: HeaderAction[] = [
     {
-      label: 'Clube Proença',
-      description: 'Benefícios e cashback',
-      path: '/beneficios-clube-proenca',
-      fragment: 'beneficios-clube-proenca',
-      icon: 'benefits'
+      label: 'Minha Conta',
+      description: 'Pedidos e preferências',
+      path: '/minha-conta',
+      icon: 'account'
     },
     {
       label: 'Acompanhar pedido',

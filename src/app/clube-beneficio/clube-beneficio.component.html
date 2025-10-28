@@ -1,0 +1,53 @@
+<section class="clube-beneficio">
+  <header class="clube-beneficio__hero">
+    <div class="clube-beneficio__hero-content">
+      <span class="clube-beneficio__badge">Exclusivo Supermercado Proença</span>
+      <h1>Clube de Benefícios Proença</h1>
+      <p>
+        Pontue em cada compra, receba cashback em reais e aproveite experiências pensadas para quem é cliente fiel da rede.
+        Assine gratuitamente e comece a acumular vantagens agora mesmo.
+      </p>
+      <a routerLink="/minha-conta" class="clube-beneficio__cta">Acessar minha conta</a>
+    </div>
+    <div class="clube-beneficio__hero-card">
+      <strong>Seu status</strong>
+      <p>Cliente Prata</p>
+      <small>Faltam 2 compras para você desbloquear frete inteligente em todos os pedidos.</small>
+    </div>
+  </header>
+
+  <section class="clube-beneficio__highlight">
+    <h2>Por que fazer parte?</h2>
+    <div class="clube-beneficio__features">
+      <article class="clube-beneficio__feature" *ngFor="let feature of features">
+        <span class="clube-beneficio__feature-accent">{{ feature.accent }}</span>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="clube-beneficio__steps">
+    <div class="clube-beneficio__steps-header">
+      <h2>Como funciona</h2>
+      <p>Leva menos de um minuto para começar a aproveitar os benefícios do nosso clube.</p>
+    </div>
+    <ol>
+      <li *ngFor="let step of steps">
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.detail }}</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="clube-beneficio__cta">
+    <div>
+      <h2>Faça parte do clube agora</h2>
+      <p>
+        Entre com sua conta Proença e acompanhe tudo pela área "Minha Conta".
+        Comprou, pontuou, economizou.
+      </p>
+    </div>
+    <a routerLink="/produtos" class="clube-beneficio__cta-secondary">Ver ofertas do clube</a>
+  </section>
+</section>
