@@ -100,7 +100,7 @@ export class CartComponent {
     return `000201BR.GOV.BCB.PIX-CLUBE-PROENCA52040000530398654${cents.padStart(
       4,
       '0'
-    )}5802BR5920SUPERMERCADO PROENCA6009ANDRADINA62070503***6304${timestamp}`;
+    )}5802BR5920SUPERMERCADO PROENCA6009SANTAFE62070503***6304${timestamp}`;
   }
 
   private generatePixQr(payload: string): string {

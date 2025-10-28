@@ -18,6 +18,13 @@ main {
   width: 100%;
 }
 
+main.app__main--full {
+  max-width: none;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding: 0;
+}
+
 .whatsapp-float {
   position: fixed;
   right: clamp(1rem, 4vw, 2rem);

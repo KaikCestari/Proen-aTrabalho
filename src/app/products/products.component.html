@@ -1,17 +1,8 @@
 <section class="products">
-  <figure class="products__promo">
-    <img
-      src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80"
-      alt="Prateleiras com produtos frescos em promoção no Supermercado Proença"
-    />
-  </figure>
   <header class="products__header">
     <div class="products__intro">
-      <h1>Nossos Produtos</h1>
-      <p>
-        Do hortifrúti ao açougue, selecionamos cuidadosamente os produtos para garantir frescor e
-        qualidade. Monte seu carrinho e finalize a compra em poucos cliques.
-      </p>
+      <h1>Produtos em Destaque</h1>
+      <p>Explore nossas ofertas exclusivas e encontre os melhores produtos para você.</p>
     </div>
   </header>
   <div class="products__layout">
@@ -25,75 +16,72 @@
           <p>{{ category.description }}</p>
         </header>
         <div class="products__items">
-          <div class="product" *ngFor="let item of category.items; trackBy: trackByItem">
-            <div class="product__media">
+          <article class="product-card" *ngFor="let item of category.items; trackBy: trackByItem">
+            <figure class="product-card__media">
               <img [src]="item.imageUrl" [alt]="item.name" loading="lazy" />
-            </div>
-            <div class="product__content">
-              <div class="product__info">
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.description }}</p>
+            </figure>
+            <div class="product-card__body">
+              <div class="product-card__topline">
+                <strong class="product-card__price">
+                  {{ item.price | currency: 'BRL':'symbol-narrow' }}
+                </strong>
+                <span class="product-card__installments">
+                  em até 3x de {{ (item.price / 3) | currency: 'BRL':'symbol-narrow' }} sem juros
+                </span>
+                <span class="product-card__shipping">Frete grátis Proença+</span>
               </div>
-              <div class="product__actions">
-                <strong>{{ item.price | currency: 'BRL':'symbol-narrow' }}</strong>
-                <button type="button" (click)="addToCart(item)">Adicionar</button>
-              </div>
+              <h3 class="product-card__title">{{ item.name }}</h3>
+              <p class="product-card__description">{{ item.description }}</p>
+              <span class="product-card__location">Retire hoje na loja Proença (Centro)</span>
             </div>
-          </div>
+            <div class="product-card__actions">
+              <button type="button" class="product-card__add" (click)="addToCart(item)">
+                <svg xmlns="https://cdn-icons-png.flaticon.com/128/4202/4202388.png" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M3 1a1 1 0 000 2h1l.89 4.45A2 2 0 007 9h7a2 2 0 001.98-1.75l.75-4.5A1 1 0 0015.75 2H5.21l-.2-1H3zm4 16a2 2 0 100-4 2 2 0 000 4zm7 0a2 2 0 100-4 2 2 0 000 4z"
+                  ></path>
+                </svg>
+                <span>Adicionar ao carrinho</span>
+              </button>
+              <button
+                type="button"
+                class="product-card__details"
+                (click)="navigateToCart()"
+                [disabled]="cartItems.length === 0"
+              >
+                Ver carrinho
+              </button>
+            </div>
+          </article>
         </div>
       </article>
     </div>
-    <aside class="products__cart" id="rastreamento" aria-label="Carrinho de compras">
-      <header>
-        <h2>Carrinho</h2>
-        <span class="products__cart-count">{{ totalQuantity() }} itens</span>
-      </header>
-      <p class="products__cart-empty" *ngIf="cartItems.length === 0">
-        Seu carrinho está vazio. Escolha produtos e clique em "Adicionar" para começar.
-      </p>
-      <ul class="products__cart-list" *ngIf="cartItems.length > 0">
-        <li *ngFor="let entry of cartItems; trackBy: trackByCartItem">
-          <div class="cart-item__details">
-            <strong>{{ entry.product.name }}</strong>
-            <span>{{ entry.product.price | currency: 'BRL':'symbol-narrow' }}</span>
-          </div>
-          <div class="cart-item__controls">
-            <button type="button" (click)="decreaseQuantity(entry.product)" aria-label="Diminuir quantidade">
-              −
-            </button>
-            <span class="cart-item__quantity">{{ entry.quantity }}</span>
-            <button type="button" (click)="increaseQuantity(entry.product)" aria-label="Aumentar quantidade">
-              +
-            </button>
-            <button
-              type="button"
-              class="cart-item__remove"
-              (click)="removeFromCart(entry.product)"
-              aria-label="Remover do carrinho"
-            >
-              remover
-            </button>
-          </div>
-        </li>
-      </ul>
-      <dl class="products__summary" *ngIf="cartItems.length > 0">
-        <div>
-          <dt>Total de itens</dt>
-          <dd>{{ totalQuantity() }}</dd>
-        </div>
-        <div>
-          <dt>Total a pagar</dt>
-          <dd>{{ cartTotal() | currency: 'BRL':'symbol-narrow' }}</dd>
-        </div>
-      </dl>
-      <button
-        type="button"
-        class="products__checkout"
-        [disabled]="cartItems.length === 0"
-        (click)="navigateToCart()"
-      >
-        Finalizar compra
-      </button>
-    </aside>
   </div>
+  <button
+    type="button"
+    class="floating-cart"
+    (click)="navigateToCart()"
+    [attr.aria-disabled]="cartItems.length === 0"
+    aria-label="Ir para o carrinho"
+  >
+    <span class="floating-cart__icon" aria-hidden="true">
+      <svg xmlns="https://cdn-icons-png.flaticon.com/128/4202/4202388.png" viewBox="0 0 20 20" focusable="false">
+        <path
+          fill="currentColor"
+          d="M3 1a1 1 0 000 2h1l.89 4.45A2 2 0 007 9h7a2 2 0 001.98-1.75l.75-4.5A1 1 0 0015.75 2H5.21l-.2-1H3zm4 16a2 2 0 100-4 2 2 0 000 4zm7 0a2 2 0 100-4 2 2 0 000 4z"
+        ></path>
+      </svg>
+      <span class="floating-cart__badge" *ngIf="cartItems.length > 0">
+        {{ totalQuantity() }}
+      </span>
+    </span>
+    <span class="floating-cart__text" *ngIf="cartItems.length > 0; else emptyCart">
+      <strong>{{ cartTotal() | currency: 'BRL':'symbol-narrow' }}</strong>
+      <span>{{ totalQuantity() }} itens</span>
+    </span>
+  </button>
+<ng-template #emptyCart>
+  <span class="floating-cart__text">Carrinho vazio</span>
+</ng-template>
 </section>
