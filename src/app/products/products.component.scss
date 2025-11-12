@@ -94,6 +94,7 @@
 .product-card__body {
   display: grid;
   gap: 0.75rem;
+  margin: 12px;
 }
 
 .product-card__topline {
@@ -147,6 +148,7 @@
   pointer-events: none;
   transform: translateY(6px);
   transition: opacity 0.2s ease, transform 0.2s ease;
+  margin: 12px;
 }
 
 .product-card:hover .product-card__actions {
